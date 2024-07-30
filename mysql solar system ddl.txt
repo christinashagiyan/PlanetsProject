@@ -1,0 +1,98 @@
+CREATE TABLE moons (
+id INT(2) NOT NULL,
+name VARCHAR(10) NOT NULL,
+info VARCHAR(700) NOT NULL,
+img VARCHAR(120) NOT NULL,
+sunplanets_id INT(1) NOT NULL
+);
+
+ALTER TABLE moons ADD CONSTRAINT moons_pk PRIMARY KEY ( id );
+ALTER TABLE moons ADD CONSTRAINT moons_img_un UNIQUE ( img );
+ALTER TABLE moons ADD CONSTRAINT moons_info_un UNIQUE ( info );
+ALTER TABLE moons ADD CONSTRAINT moons_name_un UNIQUE ( name );
+
+CREATE TABLE questions (
+id INT(3) NOT NULL,
+question VARCHAR(80) NOT NULL,
+right_answer VARCHAR(40) NOT NULL,
+a VARCHAR(40) NOT NULL,
+b VARCHAR(40) NOT NULL,
+c VARCHAR(40),
+d VARCHAR(40)
+);
+
+ALTER TABLE questions ADD CONSTRAINT questions_pk PRIMARY KEY ( id );
+ALTER TABLE questions ADD CONSTRAINT questions_question_un UNIQUE ( question );
+
+CREATE TABLE story_1 (
+id INT(3) NOT NULL,
+result INT(3) NOT NULL,
+users_login VARCHAR(40) NOT NULL,
+questions_id INT(3) NOT NULL,
+answer VARCHAR(40)
+);
+
+
+ALTER TABLE story_1
+ADD CONSTRAINT story_1_pk PRIMARY KEY ( id,
+users_login,
+questions_id );
+
+
+CREATE TABLE story_2 (
+id INT(3) NOT NULL,
+result INT(3) NOT NULL,
+users_login VARCHAR(40) NOT NULL,
+questions_id INT(3) NOT NULL,
+answer VARCHAR(40)
+);
+
+ALTER TABLE story_2
+ADD CONSTRAINT story_2_pk PRIMARY KEY ( id,
+users_login,
+questions_id );
+
+
+CREATE TABLE sunplanets (
+id INT(1) NOT NULL,
+name VARCHAR(8) NOT NULL,
+img VARCHAR(120) NOT NULL,
+facts VARCHAR(1800) NOT NULL,
+struct VARCHAR(1800) NOT NULL,
+research VARCHAR(1800) NOT NULL,
+map_img VARCHAR(120) NOT NULL,
+struct_img VARCHAR(120) NOT NULL,
+moons CHAR(1)
+);
+
+ALTER TABLE sunplanets ADD CONSTRAINT sunplanets_pk PRIMARY KEY ( id );
+ALTER TABLE sunplanets ADD CONSTRAINT sunplanets_img_un UNIQUE ( img );
+
+
+CREATE TABLE users (
+login VARCHAR(40) NOT NULL,
+password VARCHAR(40) NOT NULL
+);
+
+ALTER TABLE users ADD CONSTRAINT users_pk PRIMARY KEY ( login );
+
+
+ALTER TABLE moons
+ADD CONSTRAINT moons_sunplanets_fk FOREIGN KEY ( sunplanets_id )
+REFERENCES sunplanets ( id );
+
+ALTER TABLE story_1
+ADD CONSTRAINT story_1_questions_fk FOREIGN KEY ( questions_id )
+REFERENCES questions ( id );
+
+ALTER TABLE story_1
+ADD CONSTRAINT story_1_users_fk FOREIGN KEY ( users_login )
+REFERENCES users ( login );
+
+ALTER TABLE story_2
+ADD CONSTRAINT story_2_questions_fk FOREIGN KEY ( questions_id )
+REFERENCES questions ( id );
+
+ALTER TABLE story_2
+ADD CONSTRAINT story_2_users_fk FOREIGN KEY ( users_login )
+REFERENCES users ( login );
