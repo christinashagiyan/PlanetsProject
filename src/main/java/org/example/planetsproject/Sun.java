@@ -194,7 +194,7 @@ public class Sun extends SunPlanet {
     // отображение информациии о жизненном цикле Солнца и соответствующего изображения
     private Scene makeLifeScene() {
         StringBuilder info = new StringBuilder();
-        try (Scanner sc = new Scanner(Objects.requireNonNull(Sun.class.getResourceAsStream("/SunPack/жц.txt")))) {
+        try (Scanner sc = new Scanner(Objects.requireNonNull(Sun.class.getResourceAsStream("/SunPack/жц.txt")), "UTF-8")) {
             while (sc.hasNext()) {
                 info.append(sc.nextLine());
                 info.append("\n");

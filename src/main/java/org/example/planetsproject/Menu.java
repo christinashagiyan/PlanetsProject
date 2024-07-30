@@ -28,7 +28,7 @@ public class Menu {
     static {
         // считываем из файла тексты ссылок на источники и в цикле заполняем
         // массив гиперссылок соответствующими гиперссылками
-        try(Scanner sc = new Scanner(Objects.requireNonNull(Menu.class.getResourceAsStream("/источники.txt")))) {
+        try(Scanner sc = new Scanner(Objects.requireNonNull(Menu.class.getResourceAsStream("/источники.txt")),"UTF-8")) {
             while (sc.hasNext()) {
                 hyps.add(new Hyperlink(sc.nextLine()));
             }
