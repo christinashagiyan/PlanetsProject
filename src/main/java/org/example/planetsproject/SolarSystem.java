@@ -167,9 +167,9 @@ public class SolarSystem extends Application {
 
     // метод для подключения к базе
     public void initializeDatabase() throws ClassNotFoundException {
-        String user = "christinashagian"; //пользователь БД
-        String password = "snailqueensolar"; //пароль пользователя БД
-        String url = "jdbc:mysql://db4free.net/solarguide?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true";
+        String user = ""; //пользователь БД
+        String password = ""; //пароль пользователя БД
+        String url = "";
         Class.forName("com.mysql.cj.jdbc.Driver");
 
         try {
